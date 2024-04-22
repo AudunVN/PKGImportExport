@@ -272,7 +272,9 @@ def read_geometry_file(file, meshname):
     
     # calculate normals
     if FVF_FLAGS.has_flag("D3DFVF_NORMAL"):
-      me.calc_normals()
+      if bpy.app.version < (4, 1, 0):
+        # does not appear to be required nor supported in Blender 4.1 and up
+        me.calc_normals()
 
     # lastly, look for a MTX file. Don't grab an MTX for FNDR_M/L/VL though
     # as the FNDR lods are static and don't use the mtx
