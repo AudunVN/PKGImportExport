@@ -27,7 +27,6 @@ import io_scene_pkg.bl_preferences as bl_preferences
 import io_scene_pkg.import_tex as import_tex
 import io_scene_pkg.material_helper_ui as material_helper_ui
 
-
 from bpy.props import (
         BoolProperty,
         EnumProperty,

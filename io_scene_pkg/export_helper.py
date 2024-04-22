@@ -78,7 +78,7 @@ def create_shader_from_material(mat):
     
     # assign emission
     if root_node.type == "BSDF_PRINCIPLED":
-        emission_input = root_node.inputs["Emission"]
+        emission_input = root_node.inputs["Emission Color"]
         if len(emission_input.links) > 0:
             mix_node = emission_input.links[0].from_node
             if mix_node.type == "MIX_RGB":
@@ -95,7 +95,7 @@ def create_shader_from_material(mat):
         shader.diffuse_color[3] = 1.0
         
     # assign shininess
-    shader.shininess = root_node.inputs["Specular"].default_value
+    shader.shininess = root_node.inputs["Specular IOR Level"].default_value
 
     # copy diffuse
     shader.ambient_color = shader.diffuse_color 

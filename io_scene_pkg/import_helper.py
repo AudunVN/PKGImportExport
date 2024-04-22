@@ -140,9 +140,11 @@ def populate_material(mtl, shader, pkg_path):
     
     # setup colors
     bsdf = mtl.node_tree.nodes["Principled BSDF"]
+    for i, o in enumerate(bsdf.inputs):
+        print(i, o.name)
     bsdf.inputs['Base Color'].default_value = shader.diffuse_color
-    bsdf.inputs['Emission'].default_value = shader.emissive_color
-    bsdf.inputs['Specular'].default_value = shader.shininess
+    bsdf.inputs['Emission Color'].default_value = shader.emissive_color
+    bsdf.inputs['Specular IOR Level'].default_value = shader.shininess
     bsdf.inputs['Roughness'].default_value = 0
 
     mtl.diffuse_color = shader.diffuse_color
@@ -200,7 +202,7 @@ def populate_material(mtl, shader, pkg_path):
         blend_node.location = mathutils.Vector((-260.0, -20.0))
         
         mtl.node_tree.links.new(blend_node.inputs['Color1'], tex_image_node.outputs['Color'])
-        mtl.node_tree.links.new(bsdf.inputs['Emission'], blend_node.outputs['Color'])
+        mtl.node_tree.links.new(bsdf.inputs['Emission Color'], blend_node.outputs['Color'])
      
     # have alpha?
     if mtl_alpha < 1 or tex_depth == 32:
