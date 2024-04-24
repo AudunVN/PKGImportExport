@@ -63,8 +63,8 @@ class CreateMaterialSetupOperator(Operator):
         # continuing on, we start making the node setup now
         bsdf = material.node_tree.nodes["Principled BSDF"]
         
-        bsdf.inputs['Emission'].default_value = (0, 0, 0, 1)
-        bsdf.inputs['Specular'].default_value = 0.0
+        bsdf.inputs["Emission Color"].default_value = (0, 0, 0, 1)
+        bsdf.inputs["Specular IOR Level"].default_value = 0.0
         bsdf.inputs['Roughness'].default_value = 0
         
         # create image node
@@ -92,7 +92,7 @@ class CreateMaterialSetupOperator(Operator):
         blend_node.location = mathutils.Vector((-260.0, -20.0))
         
         material.node_tree.links.new(blend_node.inputs['Color1'], tex_image_node.outputs['Color'])
-        material.node_tree.links.new(bsdf.inputs['Emission'], blend_node.outputs['Color'])
+        material.node_tree.links.new(bsdf.inputs["Emission Color"], blend_node.outputs['Color'])
         
         # create the alpha blend node
         blend_node = material.node_tree.nodes.new('ShaderNodeMath')

@@ -343,7 +343,9 @@ def export_geometry(file, meshlist, options):
 
         # write sections
         cur_material_index = -1
+        print(obj.data.materials)
         for material in obj.data.materials:
+            print(material)
             # get non cloned material
             real_material = material
             if material.cloned_from is not None:
